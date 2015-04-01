@@ -14,4 +14,4 @@ enum Color
   COLOR_RED = 2
 };
 
-#endif /* COLOR_H_ */
+#endif
