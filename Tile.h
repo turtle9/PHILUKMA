@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif /* TILE_H_ */
+#endif
