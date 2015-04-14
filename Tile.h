@@ -1,32 +1,45 @@
-/*
- * Tile.h
- *
- *  Created on: 13.03.2015
- *      Author: markus
- */
+//------------------------------------------------------------------------------
+// Tile.h
+//
+// Group: Group 10, study assistant: Philipp Hafner
+//
+// Author: Lukas Bodner, 1431293
+//------------------------------------------------------------------------------
+//
 
-#ifndef TILE_H_
-#define TILE_H_
+#ifndef TILE_H
+#define	TILE_H
 
 #include "Color.h"
 
 class Tile
 {
 public:
-	enum Type
-	{
-	  TYPE_CROSS = 1,
-		TYPE_CURVE_1 = 2,
-	  TYPE_CURVE_2 = 3
-	};
+    enum Type
+    {
+        TYPE_CROSS = 1,
+        TYPE_CURVE_1 = 2,
+        TYPE_CURVE_2 = 3
+    };    
+    
+    Tile(Type side, Color topcolor) : side_(side), topcolor_(topcolor) { }
+    ~Tile();
+    
+    Color getColor () { return topcolor_;}
+    Type getSide() {return side_;}
+    
+    void setColor(Color topcolor) {topcolor_ = topcolor;}
+    void setSide(Type side) {side_ = side;}
+    
 
-	Tile(Type side, Color topcolor);
-	virtual ~Tile();
-
-private:
-  Type side_;
-  Color topcolor_;
-
+ private:
+    Type side_;
+    Color topcolor_;
+    
+    //Tile(const Tile &);
+    //Tile& operator= (const Tile &);
+    
 };
 
-#endif
+#endif	/* TILE_H */
+

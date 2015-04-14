@@ -1,33 +1,40 @@
-/*
- * Position.h
- *
- *  Created on: 13.03.2015
- *      Author: markus
- */
+//------------------------------------------------------------------------------
+// Position.h
+//
+// Group: Group 10, study assistant: Philipp Hafner
+//
+// Author: Lukas Bodner, 1431293
+//------------------------------------------------------------------------------
+//
 
-#ifndef POSITION_H_
-#define POSITION_H_
+#ifndef POSITION_H
+#define	POSITION_H
 
 #include <string>
-#include <sstream>
 
-class Game;
 
 class Position
 {
 private:
-	int x_;
-	int y_;
-
+    int x_;
+    int y_;
+    
+   // Position(const Position &);
+   // Position& operator= (const Position &);
+    
 public:
-	Position(int x_, int y_);
-	virtual ~Position();
-
-	int getX();
-	int getY();
-
-	bool parse(std::string input);
-	std::string toString();
+    Position(int x, int y) : x_(x), y_(y) {  }
+    ~Position();
+    
+    bool parse (std::string input);
+    std::string toString ();
+    
+    int getX () const { return x_; }
+    int getY () const { return y_; }
+    
 };
 
-#endif /* POSITION_H_ */
+
+
+#endif	/* POSITION_H */
+

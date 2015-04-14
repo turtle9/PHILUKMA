@@ -1,85 +1,54 @@
-/*
- * Position.cpp
- *
- *  Created on: 13.03.2015
- *      Author: markus
- */
+#include <iostream>
+#include <string>
+#include <sstream>
 
 #include "Position.h"
 
-Position::Position(int x, int y) : x_(x), y_(y)
-{
+using std::cout;
+using std::cin;
 
-}
-
-
-Position::~Position()
-{
-
-}
-
-
-int Position::getX()
-{
-	return x_;
-}
-
-
-int Position::getY()
-{
-	return y_;
-}
-
+Position::~Position() {}
 
 bool Position::parse(std::string input)
 {
-  char check;
-  std::istringstream read;
-  read.str(input);
-
-  read >> check;
-  if(check != '(')
+  int x, y;
+  int count_symbol = 0;
+  int i = 0;
+  char char1, char2, char3, char4;
+  
+  std::istringstream iss(input);
+  
+  iss >> char1 >> x >> char2 >> y >> char3 >> char4;
+  
+  int length = input.length();
+  
+  while(i < length)
   {
-  	x_ = 0;
-  	y_ = 0;
-  	return false;
+        if (input[i] == ' ' || input[i] == '+')
+            count_symbol++;
+            
+        i++;
   }
-
-  read >> x_;
-
-  read >> check;
-  if(check != ',')
+  
+  if (char1 == '(' && char2 == ',' && char3 == ')' && char4 != ')' 
+      && count_symbol == 0)
   {
-  	x_ = 0;
-  	y_ = 0;
-  	return false;
+      x_ = x;
+      y_ = y;
+      return true;
   }
-
-  read >> y_;
-
-  read >> check;
-  if(check != ')')
-  {
-  	x_ = 0;
-  	y_ = 0;
-  	return false;
-  }
-
-  read >> check;
-  if(!read.eof())
-  {
-  	x_ = 0;
-  	y_ = 0;
-  	return false;
-  }
-
-  return true;
+  else
+      return false;
 }
 
-
 std::string Position::toString()
-{
-	std::ostringstream coordinate;
-	coordinate << "(" << x_ << "," << y_ << ")";
-	return coordinate.str();
+{    
+    std::string position;
+    std::stringstream buffer;
+    
+    buffer << "(" << x_ << "," << y_ <<")";
+    
+    position = buffer.str();
+    
+    return position;
 }

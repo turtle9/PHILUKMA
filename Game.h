@@ -1,37 +1,42 @@
-/*
- * Game.h
- *
- *  Created on: 13.03.2015
- *      Author: markus
- */
+//------------------------------------------------------------------------------
+// Game.h
+//
+// Group: Group 10, study assistant: Philipp Hafner
+//
+// Author: Lukas Bodner, 1431293
+//------------------------------------------------------------------------------
+//
 
-#ifndef GAME_H_
-#define GAME_H_
+#ifndef GAME_H
+#define	GAME_H
 
-#include <iostream>
-#include <string>
-
+#include "Tile.h"
 #include "Color.h"
-class Tile;
 
 class Game
 {
 private:
-	Color active_player_;
-	Tile *starttile_;
-	bool running_;
-
+    Color activeplayer_;
+    Tile* starttile_;
+    bool running_;
+    
+    Game(const Game &);
+    Game& operator= (const Game &);
+    
 public:
-	Game();
-	virtual ~Game();
-
-	void setStartTile(Tile &starttile);
-	void setRunning(bool running);
-
-	Color getActivePlayer();
-
-	void run();
-	void togglePlayer();
+    Game();
+    ~Game();
+    
+    void setStartTile(Tile* starttile) { starttile_ = starttile; }
+    void run ();
+    void setRunning (bool running) { running_ = running; }
+    void togglePlayer();
+    Color getActivePlayer() { return activeplayer_; }
+    
+    
+    
 };
 
-#endif /* GAME_H_ */
+
+#endif	/* GAME_H */
+

@@ -1,64 +1,40 @@
-/*
- * Game.cpp
- *
- *  Created on: 13.03.2015
- *      Author: markus
- */
+#include <iostream>
+#include <string>
 
 #include "Game.h"
 
 
+using std::cout;
+using std::cin;
+
 Game::Game()
 {
-  active_player_ = COLOR_WHITE;
-  starttile_ = NULL;
-  running_ = false;
+    activeplayer_ = COLOR_WHITE;
+    starttile_ = NULL;
 }
 
-
-Game::~Game()
-{
-
-}
-
-
-void Game::setStartTile(Tile &starttile)
-{
-	starttile_ = &starttile;
-}
-
-
-void Game::setRunning(bool running)
-{
-	running_ = running;
-}
-
-
-Color Game::getActivePlayer()
-{
-	return active_player_;
-}
-
+Game::~Game() {}
 
 void Game::run()
 {
-  running_ = true;
-  std::string input;
-
-  while(running_)
-  {
-  	std::cout << "sep> ";
-  	std::cin >> input;
-
-  	if(input == "quit")
-  	{
-      running_ = false;
-  	}
-  }
+    running_ = true;
+    std::string str;
+    
+    while (running_ == true)
+    {
+        cout << "sep> ";
+        std::getline(cin, str);
+        
+        if (str == "quit" || str == "Quit" || str == "QUIT")
+            running_ = false;
+    }
 }
-
 
 void Game::togglePlayer()
 {
-  active_player_ = (active_player_ == COLOR_WHITE) ? COLOR_RED : COLOR_WHITE;
+    if (activeplayer_ == COLOR_WHITE)
+        activeplayer_ = COLOR_RED;
+    else
+        activeplayer_ = COLOR_WHITE;
 }
+
